@@ -1,12 +1,18 @@
 from django.db import models
 from users.models import Publisher
+
+from django.db.models import signals
+
+
 # Create your models here.
 
 class CategoryManager(models.Manager):
     def get_total_objects(self):
         return self.all().count()
+
     def get_all_objects(self):
         return self.all()
+
 
 class Category(models.Model):
     title_category = models.CharField(max_length=20)
@@ -18,6 +24,7 @@ class Category(models.Model):
 
     def __str__(self):
         return self.title_category
+
 
 class GameManager(models.Manager):
     def get_all(self):
@@ -36,3 +43,10 @@ class Game(models.Model):
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
 
     objects = GameManager()
+
+
+def create_Category(sender, instance, created, **kwargs):
+    print("Saved Category is called")
+
+
+signals.post_save.connect(receiver=create_Category, sender=Category)

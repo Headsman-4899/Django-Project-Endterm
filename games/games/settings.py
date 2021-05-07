@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'games_app',
     'orders',
     'phonenumber_field',
+    'rest_framework_jwt'
     
 ]
 
@@ -84,8 +85,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'gamesdb',
-        'USER': 'admin',
-        'PASSWORD': 'admin',
+        'USER': 'postgres',
+        'PASSWORD': 'database123',
         'HOST': 'localhost',
         'PORT': '5432',
     }
@@ -156,3 +157,50 @@ STATICFILES_DIRS = [
 STATIC_ROOT = 'static_cdn'
 MEDIA_ROOT = 'media_cdn'
 MEDIA_URL = '/media/'
+
+
+import os
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'file': {
+            'level': 'WARNING',
+            'class': 'logging.FileHandler',
+            'filename': 'games\log.log',
+        },
+    },
+    'loggers': {
+        'games_app': {
+            'handlers': ['file'],
+            'level': 'WARNING',
+            'propagate': True,
+        },
+        
+    },
+    'loggers': {
+        'users': {
+            'handlers': ['file'],
+            'level': 'WARNING',
+            'propagate': True,
+        },
+        
+    },
+    'loggers': {
+        'reviews': {
+            'handlers': ['file'],
+            'level': 'WARNING',
+            'propagate': True,
+        },
+        
+    },
+    'loggers': {
+        'orders': {
+            'handlers': ['file'],
+            'level': 'WARNING',
+            'propagate': True,
+        },
+        
+    },
+}
