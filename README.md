@@ -18,7 +18,7 @@ steps to install project:
     }
 }
 
-3) isntall requirements in project folder:
+3) install requirements in project folder:
    python -m pip install -r requirements.txt.
 4) you can create superuser: python manage.py createsuperuser 
    then run server: python manage.py runserver
